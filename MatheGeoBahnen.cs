@@ -16,7 +16,7 @@ namespace FuseeApp
 
     [FuseeApplication(Name = "MatheGeoBahnen", Description = "Yet another FUSEE App.")]
     public class MatheGeoBahnen : RenderCanvas
-    {
+    {        
         // Timefactor
         private float tf = 0.5f;
         // Flying range
