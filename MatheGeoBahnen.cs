@@ -27,7 +27,7 @@ namespace FuseeApp
 
         // Object Transform (single movements)
         private TransformComponent _satelliteMovement;
-        private TransformComponent _earthMovement;
+        // private TransformComponent _earthMovement;
 
         
 
@@ -47,12 +47,14 @@ namespace FuseeApp
         private SceneRenderer _sceneRenderer;
 
         private bool _keys;
-
         
 
         // Init is called on startup. 
-        public override void Init()
-        {                        
+        public override void Init()        
+        {
+
+            float3 test1 = FuseeApp.Grosskreis.getPolCoord(new float3(1,1,1));
+            float3 test2 = FuseeApp.Grosskreis.getKartCoord(test1);
 
             // Set the clear color for the backbuffer to white (100% intensity in all color channels R, G, B, A).
             RC.ClearColor = new float4(0.2f, 0.2f, 0.2f, 1);
@@ -62,7 +64,7 @@ namespace FuseeApp
 
             // Find objects to move
             _satelliteMovement = _worldScene.Children.FindNodes(node => node.Name == "Satellite")?.FirstOrDefault()?.GetTransform();
-            _earthMovement = _worldScene.Children.FindNodes(node => node.Name == "Earth")?.FirstOrDefault()?.GetTransform();
+            // _earthMovement = _worldScene.Children.FindNodes(node => node.Name == "Earth")?.FirstOrDefault()?.GetTransform();
 
             // Wrap a SceneRenderer around the model.
             _sceneRenderer = new SceneRenderer(_worldScene);
@@ -120,9 +122,11 @@ namespace FuseeApp
             RC.ModelView = mtxCam * mtxRot;
 
             // Move above defined objects with respect to several factors as the timefactor tf or the range factor rf
+            // _earthMovement.Rotation = new float3(0, -0.1f * M.Pi * TimeSinceStart * tf, 0);
             // _satelliteMovement.Rotation = new float3(0, 0.15f * M.Pi * TimeSinceStart * tf, 0);
+
             _satelliteMovement.Translation = new float3(range * M.Sin(tf * TimeSinceStart), -1.5f, range * M.Cos(tf * TimeSinceStart));
-            _earthMovement.Rotation = new float3(0, -0.1f * M.Pi * TimeSinceStart * tf, 0);
+            
 
             // Render the scene loaded in Init()
             _sceneRenderer.Render(RC);
