@@ -20,6 +20,7 @@ namespace FuseeApp
    
     public class MatheGeoBahnen : RenderCanvas
     {   
+        int i = 0;
         // Timefactor
         private float tf = 0.5f;
         // Flying range
@@ -53,9 +54,6 @@ namespace FuseeApp
         public override void Init()        
         {
 
-            float3 test1 = FuseeApp.Grosskreis.getPolCoord(new float3(1,1,1));
-            float3 test2 = FuseeApp.Grosskreis.getKartCoord(test1);
-
             // Set the clear color for the backbuffer to white (100% intensity in all color channels R, G, B, A).
             RC.ClearColor = new float4(0.2f, 0.2f, 0.2f, 1);
 
@@ -73,6 +71,7 @@ namespace FuseeApp
         // RenderAFrame is called once a frame
         public override void RenderAFrame()
         {
+            i++;
 
             // Clear the backbuffer
             RC.Clear(ClearFlags.Color | ClearFlags.Depth);
