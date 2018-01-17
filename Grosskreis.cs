@@ -15,7 +15,7 @@ namespace FuseeApp
 
             double r        = Sqrt((x*x)+(y*y)+(z*z));
             double theta    = Acos(z/r);
-            double phi      = Atan2(y,x);            
+            double phi      = Atan2(y,x);
 
             return new float3((float)r, (float)theta, (float)phi);
         }

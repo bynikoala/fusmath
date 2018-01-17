@@ -6,6 +6,7 @@ using Fusee.Engine.Common;
 using Fusee.Engine.Core;
 using Fusee.Math;
 using Fusee.Math.Core;
+using static System.Math;
 using Fusee.Serialization;
 using Fusee.Xene;
 using Fusee.Engine;
@@ -20,11 +21,50 @@ namespace FuseeApp
    
     public class MatheGeoBahnen : RenderCanvas
     {   
-        int i = 0;
-        // Timefactor
-        private float tf = 0.5f;
-        // Flying range
-        private float range = 1.25f;
+
+
+        // Given (z1,y1), (z2,y2), and progress fraction f=[0,1]
+
+        // d = Acos(Sin(z1) * Sin(z2) + Cos(z1) * Cos(z2) * Cos(y1 - y2))
+        // A = Sin((1 - f) * d) / Sin(d)
+        // B = Sin(f * d) / Sin(d)
+        // x = A * Cos(z1) * Cos(y1) + B * Cos(z2) * Cos(y2)
+        // y = A * Cos(z1) * Sin(y1) + B * Cos(z2) * Sin(y2)
+        // z = A * Sin(z1) + B * Sin(z2)
+
+        // zf = atan2(z, sqrt(x^2 + y^2))
+        // yf = atan2(y,x)
+        double fi = 0;
+        static float3 a = new float3(1,0,0);
+        static float3 b = new float3(1,0.5f,0.5f);
+
+        static double zf = 0;
+        static double yf = 0;
+
+
+        // Polare Koordinaten eingeben und ausgeben nach Faktor f
+        static private void increment(double f) {
+
+            double x1 = (double)a.x;
+            double y1 = (double)a.y;
+            double z1 = (double)a.z;
+
+            double x2 = (double)b.x;
+            double y2 = (double)b.y;
+            double z2 = (double)b.z;
+
+            double d = Acos(Sin(z1) * Sin(z2) + Cos(z1) * Cos(z2) * Cos(y1 - y2));
+            double A = Sin((1 - f) * d) / Sin(d);
+            double B = Sin(f * d) / Sin(d);
+            double x = A * Cos(z1) * Cos(y1) + B * Cos(z2) * Cos(y2);
+            double y = A * Cos(z1) * Sin(y1) + B * Cos(z2) * Sin(y2);
+            double z = A * Sin(z1) + B * Sin(z2);            
+            zf = Atan2(z, Sqrt((x*x) + (y*y)));
+            yf = Atan2(y,x);
+            
+        }
+
+
 
         // Object Transform (single movements)
         private TransformComponent _satelliteMovement;
@@ -71,7 +111,21 @@ namespace FuseeApp
         // RenderAFrame is called once a frame
         public override void RenderAFrame()
         {
-            i++;
+
+
+            fi = fi + 0.01;
+            increment(fi);
+
+            float3 finalp = new float3(a.x,(float)yf,(float)zf);
+
+            float3 finalk = (FuseeApp.Grosskreis.getKartCoord(finalp));
+
+            float finalx = finalk.x;
+            float finaly = finalk.y;
+            float finalz = finalk.z;
+
+
+
 
             // Clear the backbuffer
             RC.Clear(ClearFlags.Color | ClearFlags.Depth);
@@ -123,9 +177,12 @@ namespace FuseeApp
             // Move above defined objects with respect to several factors as the timefactor tf or the range factor rf
             // _earthMovement.Rotation = new float3(0, -0.1f * M.Pi * TimeSinceStart * tf, 0);
             // _satelliteMovement.Rotation = new float3(0, 0.15f * M.Pi * TimeSinceStart * tf, 0);
+            if ( fi <= 1 ) {
+                _satelliteMovement.Translation = new float3(-finalz, finalx, finaly);
+                Console.WriteLine(_satelliteMovement.Translation);
+            }
 
-            _satelliteMovement.Translation = new float3(range * M.Sin(tf * TimeSinceStart), -1.5f, range * M.Cos(tf * TimeSinceStart));
-            
+
 
             // Render the scene loaded in Init()
             _sceneRenderer.Render(RC);
