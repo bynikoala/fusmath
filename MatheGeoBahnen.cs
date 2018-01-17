@@ -17,13 +17,13 @@ using Fusee.Engine.Core.GUI;
 namespace FuseeApp
 {
 
-    [FuseeApplication(Name = "MatheGeoBahnen", Description = "Yet another FUSEE App.")]
+   
     public class MatheGeoBahnen : RenderCanvas
     {   
         // Timefactor
         private float tf = 0.5f;
         // Flying range
-        private float fr = 1.5f;
+        private float range = 1.25f;
 
         // Object Transform (single movements)
         private TransformComponent _satelliteMovement;
@@ -120,10 +120,9 @@ namespace FuseeApp
             RC.ModelView = mtxCam * mtxRot;
 
             // Move above defined objects with respect to several factors as the timefactor tf or the range factor rf
-
-            // _satelliteMovement.Rotation = new float3(0, 0.15f * M.Pi * TimeSinceStart * tf,0);
-            // _satelliteMovement.Translation = new float3(fr * M.Sin(tf * TimeSinceStart), 0, fr * M.Cos(tf * TimeSinceStart));
-            // _earthMovement.Rotation = new float3(0, -0.1f * M.Pi * TimeSinceStart * tf, 0);
+            // _satelliteMovement.Rotation = new float3(0, 0.15f * M.Pi * TimeSinceStart * tf, 0);
+            _satelliteMovement.Translation = new float3(range * M.Sin(tf * TimeSinceStart), -1.5f, range * M.Cos(tf * TimeSinceStart));
+            _earthMovement.Rotation = new float3(0, -0.1f * M.Pi * TimeSinceStart * tf, 0);
 
             // Render the scene loaded in Init()
             _sceneRenderer.Render(RC);
