@@ -4,9 +4,12 @@ using Fusee.Base.Common;
 using Fusee.Base.Core;
 using Fusee.Engine.Common;
 using Fusee.Engine.Core;
+using Fusee.Math;
 using Fusee.Math.Core;
 using Fusee.Serialization;
 using Fusee.Xene;
+using Fusee.Engine;
+using Microsoft.VisualBasic;
 using static Fusee.Engine.Core.Input;
 using static Fusee.Engine.Core.Time;
 using Fusee.Engine.Core.GUI;
@@ -16,7 +19,7 @@ namespace FuseeApp
 
     [FuseeApplication(Name = "MatheGeoBahnen", Description = "Yet another FUSEE App.")]
     public class MatheGeoBahnen : RenderCanvas
-    {        
+    {   
         // Timefactor
         private float tf = 0.5f;
         // Flying range
@@ -25,6 +28,8 @@ namespace FuseeApp
         // Object Transform (single movements)
         private TransformComponent _satelliteMovement;
         private TransformComponent _earthMovement;
+
+        
 
         // Horizontal and vertical rotation Angles for the displayed object
         private static float _angleHorz = M.PiOver4, _angleVert;
@@ -43,9 +48,12 @@ namespace FuseeApp
 
         private bool _keys;
 
+        
+
         // Init is called on startup. 
         public override void Init()
-        {
+        {                        
+
             // Set the clear color for the backbuffer to white (100% intensity in all color channels R, G, B, A).
             RC.ClearColor = new float4(0.2f, 0.2f, 0.2f, 1);
 
@@ -66,6 +74,7 @@ namespace FuseeApp
 
             // Clear the backbuffer
             RC.Clear(ClearFlags.Color | ClearFlags.Depth);
+
 
             // Mouse and keyboard movement
             if (Keyboard.LeftRightAxis != 0 || Keyboard.UpDownAxis != 0)
