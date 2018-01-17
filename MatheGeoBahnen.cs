@@ -37,7 +37,7 @@ namespace FuseeApp
 
         double fi = 0;
         static float3 a = new float3(1.25f,0,1);
-        static float3 b = new float3(1.25f,1.5f,1);
+        static float3 b = new float3(1.25f,1,1);
 
         static double zf = 0;
         static double yf = 0;
