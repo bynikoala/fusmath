@@ -20,7 +20,7 @@ namespace FuseeApp
 
    
     public class MatheGeoBahnen : RenderCanvas
-    {   
+    {
 
 
         // Given (z1,y1), (z2,y2), and progress fraction f=[0,1]
@@ -34,9 +34,10 @@ namespace FuseeApp
 
         // zf = atan2(z, sqrt(x^2 + y^2))
         // yf = atan2(y,x)
+
         double fi = 0;
-        static float3 a = new float3(1,0,0);
-        static float3 b = new float3(1,0.5f,0.5f);
+        static float3 a = new float3(1.25f,0,1);
+        static float3 b = new float3(1.25f,1.5f,1);
 
         static double zf = 0;
         static double yf = 0;
@@ -98,7 +99,7 @@ namespace FuseeApp
             RC.ClearColor = new float4(0.2f, 0.2f, 0.2f, 1);
 
             // Load the World model
-            _worldScene = AssetStorage.Get<SceneContainer>("World.fus");
+            _worldScene = AssetStorage.Get<SceneContainer>("World2.fus");
 
             // Find objects to move
             _satelliteMovement = _worldScene.Children.FindNodes(node => node.Name == "Satellite")?.FirstOrDefault()?.GetTransform();
@@ -113,7 +114,7 @@ namespace FuseeApp
         {
 
 
-            fi = fi + 0.01;
+            fi = fi + 0.001;
             increment(fi);
 
             float3 finalp = new float3(a.x,(float)yf,(float)zf);
@@ -178,11 +179,9 @@ namespace FuseeApp
             // _earthMovement.Rotation = new float3(0, -0.1f * M.Pi * TimeSinceStart * tf, 0);
             // _satelliteMovement.Rotation = new float3(0, 0.15f * M.Pi * TimeSinceStart * tf, 0);
             if ( fi <= 1 ) {
-                _satelliteMovement.Translation = new float3(-finalz, finalx, finaly);
+                _satelliteMovement.Translation = new float3(finalk);
                 Console.WriteLine(_satelliteMovement.Translation);
             }
-
-
 
             // Render the scene loaded in Init()
             _sceneRenderer.Render(RC);
