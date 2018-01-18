@@ -24,7 +24,7 @@ namespace FuseeApp
 
 
         // Given (z1,y1), (z2,y2), and progress fraction f=[0,1]
-
+        // https://math.stackexchange.com/questions/383711/parametric-equation-for-great-circle/390013#390013
         // d = Acos(Sin(z1) * Sin(z2) + Cos(z1) * Cos(z2) * Cos(y1 - y2))
         // A = Sin((1 - f) * d) / Sin(d)
         // B = Sin(f * d) / Sin(d)
