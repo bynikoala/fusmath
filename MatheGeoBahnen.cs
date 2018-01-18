@@ -36,9 +36,12 @@ namespace FuseeApp
         // yf = atan2(y,x)
 
         double fi = 0;
-        static float3 a = new float3(1.25f,1,0); // r, theta, phi HIER DIE STARTKOORDINATEN IN POLARFORM
+        static float3 a = new float3(1.25f,45,45); // r, theta, phi HIER DIE STARTKOORDINATEN IN POLARFORM
                                                   // (r ist der abstand zum Ursprung und tut am besten mit 1.25f)
-        static float3 b = new float3(1.25f,1,1); // r, theta, phi HIER DIE ZIELKO. IN POLARFORM    
+        static float3 b = new float3(1.25f,45,90); // r, theta, phi HIER DIE ZIELKO. IN POLARFORM (r gleich wie start)
+
+
+
 
         static double phif = 0;
         static double thetaf = 0;
@@ -47,13 +50,11 @@ namespace FuseeApp
         // Polare Koordinaten eingeben und ausgeben nach Faktor f
         static private void increment(double f) {
 
-            double x1 = (double)a.x;
-            double y1 = (double)a.y;
-            double z1 = (double)a.z;
+            double y1 = (Math.PI / 180) * (double)a.y;
+            double z1 = (Math.PI / 180) * (double)a.z;
 
-            double x2 = (double)b.x;
-            double y2 = (double)b.y;
-            double z2 = (double)b.z;
+            double y2 = (Math.PI / 180) * (double)b.y;
+            double z2 = (Math.PI / 180) * (double)b.z;
 
             double d = Acos(Sin(z1) * Sin(z2) + Cos(z1) * Cos(z2) * Cos(y1 - y2));
             double A = Sin((1 - f) * d) / Sin(d);
