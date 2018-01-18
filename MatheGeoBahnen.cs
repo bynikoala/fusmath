@@ -98,7 +98,7 @@ namespace FuseeApp
             RC.ClearColor = new float4(0.2f, 0.2f, 0.2f, 1);
 
             // Load the World model
-            _worldScene = AssetStorage.Get<SceneContainer>("World2.fus");
+            _worldScene = AssetStorage.Get<SceneContainer>("World.fus");
 
             // Find objects to move
             _satelliteMovement = _worldScene.Children.FindNodes(node => node.Name == "Satellite")?.FirstOrDefault()?.GetTransform();
