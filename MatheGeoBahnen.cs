@@ -37,7 +37,7 @@ namespace FuseeApp
 
         double fi = 0;
         static float3 a = new float3(1.25f,45,45); // r, theta, phi HIER DIE STARTKOORDINATEN IN POLARFORM
-                                                  // (r ist der abstand zum Ursprung und tut am besten mit 1.25f)
+                                                   // (r ist der abstand zum Ursprung und tut am besten mit 1.25f)
         static float3 b = new float3(1.25f,45,90); // r, theta, phi HIER DIE ZIELKO. IN POLARFORM (r gleich wie start)
 
 
