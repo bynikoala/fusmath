@@ -39,8 +39,8 @@ namespace FuseeApp
         static float3 a = new float3(1.25f,0,1);
         static float3 b = new float3(1.25f,1.25f,1);
 
-        static double zf = 0;
-        static double yf = 0;
+        static double phif = 0;
+        static double thetaf = 0;
 
 
         // Polare Koordinaten eingeben und ausgeben nach Faktor f
@@ -59,10 +59,9 @@ namespace FuseeApp
             double B = Sin(f * d) / Sin(d);
             double x = A * Cos(z1) * Cos(y1) + B * Cos(z2) * Cos(y2);
             double y = A * Cos(z1) * Sin(y1) + B * Cos(z2) * Sin(y2);
-            double z = A * Sin(z1) + B * Sin(z2);            
-            zf = Atan2(z, Sqrt((x*x) + (y*y)));
-            yf = Atan2(y,x);
-            
+            double z = A * Sin(z1) + B * Sin(z2);
+            phif = Atan2(z, Sqrt((x*x) + (y*y)));
+            thetaf = Atan2(y,x);
         }
 
 
@@ -117,15 +116,13 @@ namespace FuseeApp
             fi = fi + 0.001;
             increment(fi);
 
-            float3 finalp = new float3(a.x,(float)yf,(float)zf);
+            float3 finalp = new float3(a.x,(float)thetaf,(float)phif);
 
             float3 finalk = (FuseeApp.Grosskreis.getKartCoord(finalp));
 
             float finalx = finalk.x;
             float finaly = finalk.y;
             float finalz = finalk.z;
-
-
 
 
             // Clear the backbuffer
@@ -179,7 +176,7 @@ namespace FuseeApp
             // _earthMovement.Rotation = new float3(0, -0.1f * M.Pi * TimeSinceStart * tf, 0);
             // _satelliteMovement.Rotation = new float3(0, 0.15f * M.Pi * TimeSinceStart * tf, 0);
             if ( fi <= 1 ) {
-                _satelliteMovement.Translation = new float3(finalk);
+                _satelliteMovement.Translation = new float3(-finalz, finalx, finaly);
                 Console.WriteLine(_satelliteMovement.Translation);
             }
 
