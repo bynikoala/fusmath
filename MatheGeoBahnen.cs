@@ -36,8 +36,8 @@ namespace FuseeApp
         // yf = atan2(y,x)
 
         double fi = 0;
-        static float3 a = new float3(1.25f,0,1);
-        static float3 b = new float3(1.25f,1.25f,1);
+        static float3 a = new float3(1.25f,1,0); // r, theta, phi
+        static float3 b = new float3(1.25f,1,1);
 
         static double phif = 0;
         static double thetaf = 0;
@@ -176,7 +176,7 @@ namespace FuseeApp
             // _earthMovement.Rotation = new float3(0, -0.1f * M.Pi * TimeSinceStart * tf, 0);
             // _satelliteMovement.Rotation = new float3(0, 0.15f * M.Pi * TimeSinceStart * tf, 0);
             if ( fi <= 1 ) {
-                _satelliteMovement.Translation = new float3(-finalz, finalx, finaly);
+                _satelliteMovement.Translation = new float3(finaly, finalz, finalx);
                 Console.WriteLine(_satelliteMovement.Translation);
             }
 
