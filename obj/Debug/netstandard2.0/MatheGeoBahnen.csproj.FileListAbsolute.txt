@@ -25,6 +25,3 @@ C:\Users\nikol\Desktop\hfu\fusmath\obj\Debug\netstandard2.0\MatheGeoBahnen.Assem
 C:\Users\nikol\Desktop\hfu\fusmath\obj\Debug\netstandard2.0\MatheGeoBahnen.dll
 C:\Users\nikol\Desktop\hfu\fusmath\obj\Debug\netstandard2.0\MatheGeoBahnen.pdb
 C:\Users\nikol\Desktop\hfu\fusmath\bin\Debug\netstandard2.0\Assets\calibril.ttf
-C:\Users\nikol\Desktop\hfu\fusmath\bin\Debug\netstandard2.0\Assets\World2.blend
-C:\Users\nikol\Desktop\hfu\fusmath\bin\Debug\netstandard2.0\Assets\World2.blend1
-C:\Users\nikol\Desktop\hfu\fusmath\bin\Debug\netstandard2.0\Assets\World2.fus
