@@ -36,9 +36,9 @@ namespace FuseeApp
         // yf = atan2(y,x)
 
         double fi = 0;
-        static float3 a = new float3(1.25f,0,0); // r, theta, phi HIER DIE STARTKOORDINATEN IN POLARFORM (Degree)
+        static float3 a = new float3(1.25f,48,8); // r, theta, phi HIER DIE STARTKOORDINATEN IN POLARFORM (Degree)
                                                  // (r ist der abstand zum Ursprung und tut am besten mit 1.25f (Radiant))
-        static float3 b = new float3(1.25f,-51,10); // r, theta, phi HIER DIE ZIELKO. IN POLARFORM (r gleich wie start)
+        static float3 b = new float3(1.25f,40,-74); // r, theta, phi HIER DIE ZIELKO. IN POLARFORM (r gleich wie start)
 
 
 
@@ -50,11 +50,11 @@ namespace FuseeApp
         // Polare Koordinaten eingeben und ausgeben nach Faktor f
         static private void increment(double f) {
 
-            double y1 = (Math.PI / 180) * ((double)a.y+90);
-            double z1 = (Math.PI / 180) * (double)a.z;
+            double y1 = (Math.PI / 180) * (double)a.y;
+            double z1 = -(Math.PI / 180) * (double)a.z;
 
-            double y2 = (Math.PI / 180) * ((double)b.y+90);
-            double z2 = (Math.PI / 180) * (double)b.z;
+            double y2 = (Math.PI / 180) * (double)b.y;
+            double z2 = -(Math.PI / 180) * (double)b.z;
 
             double d = Acos(Sin(z1) * Sin(z2) + Cos(z1) * Cos(z2) * Cos(y1 - y2));
             double A = Sin((1 - f) * d) / Sin(d);
@@ -178,7 +178,7 @@ namespace FuseeApp
             // _earthMovement.Rotation = new float3(0, -0.1f * M.Pi * TimeSinceStart * tf, 0);
             // _satelliteMovement.Rotation = new float3(0, 0.15f * M.Pi * TimeSinceStart * tf, 0);
             if ( fi <= 1 ) {
-                _satelliteMovement.Translation = new float3(finaly, finalz, finalx);
+                _satelliteMovement.Translation = new float3(-finalz, finalx, finaly);
             }
 
             // Render the scene loaded in Init()

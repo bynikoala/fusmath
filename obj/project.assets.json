@@ -183,11 +183,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nikol\\Desktop\\hfu\\fusmath\\MatheGeoBahnen.csproj",
+      "projectUniqueName": "C:\\Users\\nikol\\Desktop\\hfu\\Projekte\\fusmath\\MatheGeoBahnen.csproj",
       "projectName": "MatheGeoBahnen",
-      "projectPath": "C:\\Users\\nikol\\Desktop\\hfu\\fusmath\\MatheGeoBahnen.csproj",
+      "projectPath": "C:\\Users\\nikol\\Desktop\\hfu\\Projekte\\fusmath\\MatheGeoBahnen.csproj",
       "packagesPath": "C:\\Users\\nikol\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nikol\\Desktop\\hfu\\fusmath\\obj\\",
+      "outputPath": "C:\\Users\\nikol\\Desktop\\hfu\\Projekte\\fusmath\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
